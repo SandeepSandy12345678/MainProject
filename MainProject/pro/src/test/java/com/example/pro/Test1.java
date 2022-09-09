@@ -19,7 +19,7 @@ public class Test1 {
 
 	@Test
 	public void adding_New_Farmer_Succesfully() throws Exception {
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/farmer/addnewfarmer_v3?fname=sandepp_rr&age=24&gender=Male",
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/farmer/addnewfarmer_v3?name=sandepp_rr&age=24&gender=Male",
 				String.class)).contains("New farmer added successfully");
 	}
 }
