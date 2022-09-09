@@ -95,7 +95,7 @@ FarmerService  farmerservice;
 //	@ResponseBody
 //	@GetMapping("/hello")
 //public String nam() {
-//		return "hello  world";
+//		return "hello";
 //	}
 //	
 //	@ResponseBody
