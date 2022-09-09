@@ -1,0 +1,32 @@
+function onFormSubmit()
+{
+
+console.log(document.forms['farmerForm'].name.value);
+            var hasFormError = false
+            
+            const enteredAge = document.getElementById("age").value
+            if (isNaN(enteredAge) || enteredAge < 18 || enteredAge > 100) {
+                document.getElementById("error1").innerHTML = "Age must be greater than 18 and less than 100"
+                hasFormError = true
+            }
+            
+            const enteredName = document.getElementById("name").value
+            if (isNaN(enteredName) || enteredName.length < 8 || enteredName > 12) {
+                document.getElementById("error").innerHTML = "Name must contain atleast 8 characters and should not exceed 12"
+                hasFormError = true
+            }
+            var selectedGender = document.querySelector('input[name="gender"]:checked')?.value;
+            if (selectedGender !== "male" || selectedGender !== "female") {
+                document.getElementById("error2").innerHTML = "Gender should be male or female"
+                hasFormError = true
+            }
+            
+            if (hasFormError) {
+                // Do not submit form on error
+                throw "Invalid Form Details"
+            }
+
+    
+return false;
+
+}

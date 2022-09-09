@@ -1,0 +1,65 @@
+ $(document).ready(
+		function() {
+
+			// GET REQUEST
+			$("#farmerForm").click(function(event) {
+				event.preventDefault();
+				ajaxGet();
+			});
+
+			// DO GET
+			function ajaxGet() {
+				$.ajax({
+					type : "GET",
+					url : "saveFarmer",
+					success : function(result) {
+						if (result.status == "success") {
+							$('#getResultDiv ul').empty();
+							var custList = "";
+							$.each(result.data,
+									function(i, farmer) {
+										var user = "FarmerName  "
+												+ farmer.Name
+												+ ", age  = " + farmer.age
+												+ "<br>";
+										$('#postResultDiv').append(
+												user)
+									});
+							console.log("Success: ", result);
+						} else {
+							$("#postResultDiv").html("<strong>Error</strong>");
+							console.log("Fail: ", result);
+						}
+					},
+					error : function(e) {
+						$("#getResultDiv").html("<strong>Error</strong>");
+						console.log("ERROR: ", e);
+					}
+				});
+			}
+		})
+		<script>
+async function onFormSubmit() {
+         
+           console.log(document.forms['farmerForm'].name.value);
+
+
+     let queryStr = "?name="+document.forms['farmerForm'].name.value+"&age="+document.forms['farmerForm'].age.value+"&gender="+document.forms['farmerForm'].gender.value;
+
+            await fetch('/farmers/addnewfarmer'+queryStr , {   
+                method: 'GET',
+                headers: { "Content-Type":'application/x-www-form-urlencoded'  },
+                //body: formData
+            })
+               .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    document.getElementById("msg").innerText = res.message;
+                   document.forms['farmerForm'].name.value="";
+                   document.forms['farmerForm'].age.value="";
+                    document.forms['farmerForm'].gender.value="";
+                })
+                .catch(err =>  document.getElementById("msg").innerText ="failed to add farmer");
+                
+        }
+</script>
