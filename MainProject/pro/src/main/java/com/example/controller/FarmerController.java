@@ -82,7 +82,7 @@ FarmerService  farmerservice;
 	
 	@GetMapping("/search")
 	public ModelAndView viewAddFarmer() {
-		ModelAndView mod=new ModelAndView("all-farmers");
+		ModelAndView mod=new ModelAndView("search-edit");
 		return mod;
 	}
 	
